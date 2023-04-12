@@ -1,4 +1,5 @@
 # ESTR1005_project
+A nash equilibrium solver using linear algebra. Only works for full-rank payoff matrix and zero-sum games.
 
 ## Python version and prerequisite
 Python 3.8.2
