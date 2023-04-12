@@ -78,11 +78,10 @@ def ShowAns(row_optimal_strategy, col_optimal_strategy, precision):
     col_optimal_strategy_exact = str(col_optimal_strategy)
 
     for prob in np.nditer(row_optimal_strategy):
-        row_optimal_strategy_approx += str(Fraction(round(prob.item(0), precision))) + ' | '
+         #limit the size of denominator to prevent accuracy of conversion problem
+        row_optimal_strategy_approx += str(Fraction(prob.item(0)).limit_denominator(max_denominator=10*precision)) + '   '
     for prob in np.nditer(col_optimal_strategy):
-        col_optimal_strategy_approx += str(Fraction(round(prob.item(0), precision))) + ' | '
-    row_optimal_strategy_approx = row_optimal_strategy_approx[:-3]
-    col_optimal_strategy_approx = col_optimal_strategy_approx[:-3]
+        col_optimal_strategy_approx += str(Fraction(prob.item(0)).limit_denominator(max_denominator=10*precision)) + '   '
 
     for symbol, formatted in {'[':'', ']':''}.items():
         row_optimal_strategy_exact = row_optimal_strategy_exact.replace(symbol, formatted)
@@ -131,13 +130,13 @@ Frame5.grid() #answer layout
 
 
 
-game_size_label = tk.Label(Frame1, text='Enter row & column player strategy number:', bg='grey', fg='lime')
-game_size_label.grid(row=0, column=0)
+game_size_label = tk.Label(Frame1, text='Row & column player strategy number:', bg='grey', fg='lime')
+game_size_label.grid(row=0, column=0, sticky='W')
 game_size = tk.Entry(Frame1, bg='grey', fg='white')
 game_size.grid(row=0, column=1)
 
-precision_label = tk.Label(Frame1, text='Enter the precision of fraction(recommended 5):', bg='grey', fg='lime')
-precision_label.grid(row=1, column=0)
+precision_label = tk.Label(Frame1, text='Maximum digits of denominator for fraction display(recommended 5):', bg='grey', fg='lime')
+precision_label.grid(row=1, column=0, sticky='W')
 precision_input = tk.Entry(Frame1, bg='grey', fg='white')
 precision_input.grid(row=1, column=1)
 
