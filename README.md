@@ -1,6 +1,6 @@
 # ESTR1005_project
 
-##P ython version and prerequisite
+## Python version and prerequisite
 Python 3.8.2
 numpy 1.23.4
 tkinter 8.4
