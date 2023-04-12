@@ -20,7 +20,7 @@ def Layout_setup():
     n = int(game_size.get())
     precision = int(precision_input.get())
     payoff = []
-    precision_show_label = tk.Label(Frame2, text=f"Precision is: {precision}", fg='lime', bg='black')
+    precision_show_label = tk.Label(Frame2, text=f"Precision: {precision}", fg='lime', bg='black')
     precision_show_label.grid(row=0, column=0)
     for i in range(n):
         line = []
