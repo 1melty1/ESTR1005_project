@@ -59,7 +59,7 @@ def CalNash(n, payoff, precision):
     row_optimal_strategy = np.linalg.solve(np.transpose(A), b)
     row_optimal_strategy = row_optimal_strategy * (1/np.sum(row_optimal_strategy))
     col_optimal_strategy = np.linalg.solve(A, b)
-    col_optimal_strategy =  col_optimal_strategy = col_optimal_strategy * (1/np.sum(col_optimal_strategy)) #probability have to add up to 1
+    col_optimal_strategy = col_optimal_strategy * (1/np.sum(col_optimal_strategy)) #probability have to add up to 1
     print("row_optimal_strategy:", row_optimal_strategy)
     print("col_optimal_strategy:", col_optimal_strategy)
     if(not (all(prob >=0 for prob in row_optimal_strategy) and all(prob >=0 for prob in row_optimal_strategy))):
