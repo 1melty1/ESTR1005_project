@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[legalpaper, portrait, margin=1in]{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\makeatletter
+% Reinsert missing \algbackskip
+\def\algbackskip{\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\begin{algorithm}
+\caption{Finding optimal strategy for row/column player}\label{alg:cap}
+
+\hspace*{\algorithmicindent} \textbf{Input: }
+{Payoff matrix $A$ of a $n \times n$ game. Size of payoff matrix A, which is $n$. Current player $y$.}\\
+\hspace*{\algorithmicindent} \textbf{Output: }
+{An optimal strategy vector $x$. $\mathbf{0}$ if optimal strategy cannot be found using this algorithm.}
+
+\begin{algorithmic}
+\Procedure{FindOptimalStrategy}{$A, n, y$}
+\If{$y = row\_player$}
+    \State $A \gets A^T$
+\EndIf
+\If{$det(A) = 0$} \Comment{Only full-rank payoff matrix is allowed in this algorithm}
+    \State \Return $\mathbf{0}$
+\EndIf
+\State $b \gets (1 \ldots 1)^T$ \Comment{$b$ is a vector of $n$ 1 components}
+\State $x \gets Solve(A, b)$ \Comment{Solve $x$ for $Ax=b$}
+\For{$i \gets 1$ to $n$}
+    \If{$x_i < 0$}
+        \State \Return $\mathbf{0}$ \Comment{The strategy is invalid since probability cannot be smaller than 0}
+    \EndIf
+\EndFor
+\State $x \gets \frac{1}{\sum_{i=1}^{n}x_i}x$ \Comment{Scale each components in $x$ such that all components in $x$ add up to 1}
+\State \Return $x$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}
